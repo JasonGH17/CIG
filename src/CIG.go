@@ -26,9 +26,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("Something went wrong: %s", err)
 	}
-	config := parsefile(cfgp)
+	parsefile(cfgp)
 
-	log.Printf("%+v\n", getPrjsJson(&config))
+	GUI()
 
 	// Git functions
 	repo, err := git.PlainOpen(".")

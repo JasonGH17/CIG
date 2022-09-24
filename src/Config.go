@@ -15,23 +15,23 @@ type CFG struct {
 	Projects []PRJ `json:"projects"`
 }
 
-func parsefile(path string) CFG {
-	config := CFG{}
+var conf CFG
 
+func parsefile(path string) *CFG {
 	file, err := os.ReadFile(path)
 	if err != nil {
 		log.Fatalf("Error reading config file: %v\n", err)
 	}
-	err = json.Unmarshal(file, &config)
+	err = json.Unmarshal(file, &conf)
 	if err != nil {
 		log.Fatalf("Error on config file parsing: %v\n", err)
 	}
 
-	return config
+	return &conf
 }
 
-func savefile(path string, config *CFG) error {
-	output, err := json.MarshalIndent(config, "", "\t")
+func savefile(path string) error {
+	output, err := json.MarshalIndent(&conf, "", "\t")
 	if err != nil {
 		return err
 	}
@@ -39,10 +39,10 @@ func savefile(path string, config *CFG) error {
 	return nil
 }
 
-func getPrjsJson(config *CFG) string {
-	output, err := json.Marshal(&config.Projects)
+func getPrjsJson() []byte {
+	output, err := json.Marshal(&conf.Projects)
 	if err != nil {
 		log.Fatalf("Error on config projects json marshalling: %v\n", err)
 	}
-	return string(output)
+	return output
 }
