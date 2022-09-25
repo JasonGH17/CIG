@@ -12,7 +12,7 @@ import (
 func main() {
 	// Setup
 	var cfgp string
-	flag.StringVar(&cfgp, "cfg", ".", "Specify the \".cig\" file path")
+	flag.StringVar(&cfgp, "cfg", "config.json", "Specify the \".cig\" file path")
 	help := flag.Bool("help", false, "Shows this menu")
 
 	flag.Parse()

@@ -1,0 +1,36 @@
+.table {
+	border-radius: 5px;
+	font-size: 12px;
+	font-weight: normal;
+	border: none;
+	border-collapse: collapse;
+	width: 100%;
+	max-width: 100%;
+	white-space: nowrap;
+	background-color: var(--white);
+}
+
+.table td,
+.table th {
+	text-align: center;
+	padding: 8px;
+}
+
+.table td {
+	border-right: 1px solid #f8f8f8;
+	font-size: 12px;
+}
+
+.table thead th {
+	color: var(--white);
+	background: var(--gb);
+}
+
+.table thead th:nth-child(odd) {
+	color: var(--white);
+	background: var(--black);
+}
+
+.table tr:nth-child(even) {
+	background: #f8f8f8;
+}

@@ -1,0 +1,8 @@
+.project h3,
+.project p {
+	color: var(--black);
+}
+
+.prop {
+    cursor: pointer;
+}

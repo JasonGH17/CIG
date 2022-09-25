@@ -1,0 +1,36 @@
+.topbar {
+	display: flex;
+	background-color: var(--white);
+	width: 100vw;
+	height: 100px;
+	padding-left: 20px;
+	padding-right: 20px;
+	align-items: center;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.title {
+	color: #ef233c;
+	font-weight: 800;
+	margin-right: 80px;
+	cursor: pointer;
+}
+
+.topbar div {
+	display: flex;
+	flex-direction: row;
+}
+
+.outlet {
+	padding: 30px;
+}
+
+.outlet h1 {
+	font-weight: 600;
+}
+
+.nav-item {
+	color: var(--accent2)
+}

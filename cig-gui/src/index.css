@@ -1,0 +1,23 @@
+body {
+	margin: 0;
+	font-family: 'Open Sans', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	--black: #2b2d42;
+	--gb: #8d99ae;
+	--white: #edf2f4;
+	--accent1: #ef233c;
+	--accent2: #d90429;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
+}
+
+* {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
