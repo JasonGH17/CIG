@@ -18,10 +18,25 @@ type CFG struct {
 var conf CFG
 
 func parsefile(path string) *CFG {
+	if _, err := os.Stat(path); err != nil {
+		file, _ := os.Create(path)
+		file.Close()
+	}
 	file, err := os.ReadFile(path)
 	if err != nil {
 		log.Fatalf("Error reading config file: %v\n", err)
 	}
+
+	if len(file) == 0 {
+		conf = CFG{Projects: []PRJ{}}
+		err = savefile(path)
+		if err != nil {
+			log.Fatalf("Error on default value config file save: %v\n", err)
+		}
+
+		return &conf
+	}
+
 	err = json.Unmarshal(file, &conf)
 	if err != nil {
 		log.Fatalf("Error on config file parsing: %v\n", err)
