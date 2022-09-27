@@ -8,7 +8,7 @@ import (
 
 type PRJ struct {
 	Name     string `json:"name"`
-	Refresh  int    `json:"refresh"`
+	Refresh  int64  `json:"refresh"`
 	Location string `json:"location"`
 }
 type CFG struct {
@@ -17,10 +17,10 @@ type CFG struct {
 
 var conf CFG
 
-func parsefile(path string) *CFG {
+func parseFile(path string) *CFG {
 	if _, err := os.Stat(path); err != nil {
-		file, _ := os.Create(path)
-		file.Close()
+		f, _ := os.Create(path)
+		f.Close()
 	}
 	file, err := os.ReadFile(path)
 	if err != nil {
@@ -29,7 +29,7 @@ func parsefile(path string) *CFG {
 
 	if len(file) == 0 {
 		conf = CFG{Projects: []PRJ{}}
-		err = savefile(path)
+		err = saveFile(path)
 		if err != nil {
 			log.Fatalf("Error on default value config file save: %v\n", err)
 		}
@@ -45,7 +45,7 @@ func parsefile(path string) *CFG {
 	return &conf
 }
 
-func savefile(path string) error {
+func saveFile(path string) error {
 	output, err := json.MarshalIndent(&conf, "", "\t")
 	if err != nil {
 		return err

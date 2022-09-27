@@ -5,14 +5,16 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-
-	"github.com/go-git/go-git/v5"
 )
+
+var cfgp string
 
 func main() {
 	// Setup
-	var cfgp string
-	flag.StringVar(&cfgp, "cfg", "config.json", "Specify the \".cig\" file path")
+	var prj string
+
+	flag.StringVar(&cfgp, "cfg", "config.json", "Specify the \"config.json\" file path")
+	flag.StringVar(&prj, "start", "", "Add the cwd as a new project")
 	help := flag.Bool("help", false, "Shows this menu")
 
 	flag.Parse()
@@ -26,15 +28,19 @@ func main() {
 	if err != nil {
 		log.Fatalf("Something went wrong: %s", err)
 	}
-	parsefile(cfgp)
+	parseFile(cfgp)
 
-	GUI()
+	// CLI
+	if prj != "" {
+		cwd, err := os.Getwd()
+		if err != nil {
+			log.Fatalf("Error getting the cwd: %v\n", err)
+		}
+		cliNewProject(cwd, prj)
 
-	// Git functions
-	repo, err := git.PlainOpen(".")
-	if err != nil {
-		log.Fatalln("Git repository not found")
+		os.Exit(0)
 	}
 
-	_ = repo
+	// Web API
+	GUI()
 }
