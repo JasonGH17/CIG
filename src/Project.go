@@ -1,6 +1,9 @@
 package main
 
 import (
+	"log"
+	"os"
+	"path/filepath"
 	"time"
 )
 
@@ -21,6 +24,15 @@ func newProject(path string, name string) error {
 			return &CError{msg: "A project with this name already exists"}
 		}
 	}
+
+	confPath := filepath.Join(path, "cig.json")
+	prjconf, err := os.Create(confPath)
+	if err != nil {
+		log.Fatalf("Error creating config file in project directory: %v\n", err)
+	}
+
+	_ = prjconf
+	//prjconf.Write([]byte{"{auth: \"off\", username: \"\", password: \"\"}"})
 
 	conf.Projects = append(conf.Projects, PRJ{Name: name, Location: path, Refresh: jsDate()})
 	return saveFile(cfgp)

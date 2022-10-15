@@ -41,6 +41,10 @@ func main() {
 		os.Exit(0)
 	}
 
+	// Git
+	quit := GitLoop()
+	_ = quit
+
 	// Web API
 	GUI()
 }
