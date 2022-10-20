@@ -13,7 +13,7 @@ import (
 )
 
 func GitLoop() chan struct{} {
-	ticker := time.NewTicker(time.Minute / 3)
+	ticker := time.NewTicker(time.Hour)
 	quit := make(chan struct{})
 	go func() {
 		for {
