@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 )
 
+var build_os string
 var cfgp string
 
 func main() {
